@@ -1,8 +1,10 @@
-"""Checks NYC COVID website every 30 seconds for available appointments for a given location and will send an email when there
+"""Checks NYC COVID website every 30 seconds for available appointments
+for a given location and will send an email when there
 are availabilities.
 
-NB for this to work you need to fill out the relevant consts to your system settings and also
-put your gmail in low-security mode, so I recommend using a burner gmail for that.
+NB for this to work you need to fill out the relevant consts to your system
+settings and also put your gmail in low-security mode, so I recommend 
+using a burner gmail for that.
 """
 import time
 import sys
