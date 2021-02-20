@@ -32,8 +32,9 @@ NO_APPTS_AVAIL = "No Appointments Available Currently"
 APPTS_AVAIL = "Appointments Available"
 
 # Email consts
-GMAIL_USER = "sanjeev87.dev@gmail.com"
-GMAIL_PASSWORD = "Daconia4$"
+FROM_GMAIL_USER = ""
+TO_GMAIL_USER = ""
+GMAIL_PASSWORD = ""
 SUBJECT = "COVID Vaccine Appointment status for "
 
 
@@ -61,7 +62,7 @@ def _return_vaccine_signup_status(pandas_df, location_name):
 def _init_email():
     server = smtplib.SMTP("smtp.gmail.com", 587)
     server.starttls()
-    server.login(GMAIL_USER, GMAIL_PASSWORD)
+    server.login(FROM_GMAIL_USER, GMAIL_PASSWORD)
     return server
 
 
@@ -85,10 +86,12 @@ def _get_status_for_location(location_name):
 def _email_on_status_if_necessary(status, location_name):
     now = datetime.now()
     if status == APPTS_AVAIL:
-        LOG.info(f"[{now}] Sending email for {location_name}: {status} to {GMAIL_USER}")
+        LOG.info(
+            f"[{now}] Sending email for {location_name}: {status} to {TO_GMAIL_USER}"
+        )
         server = _init_email()
         message = f"Subject: Appt avail for {location_name}: {NYC_COVID_WEBSITE_URL}\n\nSent by {__file__} at {now}"
-        _send_email(server, GMAIL_USER, GMAIL_USER, message)
+        _send_email(server, FROM_GMAIL_USER, TO_GMAIL_USER, message)
 
 
 @click.command()
