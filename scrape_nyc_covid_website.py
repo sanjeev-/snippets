@@ -92,7 +92,8 @@ def _email_on_status_if_necessary(status, location_name):
             f"[{now}] Sending email for {location_name}: {status} to {TO_GMAIL_USER}"
         )
         server = _init_email()
-        message = f"Subject: Appt avail for {location_name}: {NYC_COVID_WEBSITE_URL}\n\nSent by {__file__} at {now}"
+        message = f"Subject: Appt avail for {location_name}: {NYC_COVID_WEBSITE_URL}\n\n \
+        Sent by {__file__} at {now}"
         _send_email(server, FROM_GMAIL_USER, TO_GMAIL_USER, message)
 
 
